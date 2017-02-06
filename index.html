@@ -1,0 +1,196 @@
+<html>
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+<base href="/kitchendesign2017/kitchendesign/master/" />
+<title>Proposed Kitchen Layout</title>
+<script type="text/javascript" src="lib/big.min.js"></script>
+<script type="text/javascript" src="lib/gl-matrix-min.js"></script>
+<script type="text/javascript" src="lib/jszip.min.js"></script>
+<script type="text/javascript" src="lib/core.min.js"></script>
+<script type="text/javascript" src="lib/geom.min.js"></script>
+<script type="text/javascript" src="lib/triangulator.min.js"></script>
+<script type="text/javascript" src="lib/viewmodel.min.js"></script>
+<script type="text/javascript" src="lib/viewhome.min.js"></script>
+<style type="text/css">
+.viewerComponent  {
+}
+</style>
+</head>
+<body onload="
+  var fs = function() {
+  var c = document.getElementById('viewerCanvas'),
+      b = document.body.getBoundingClientRect();
+  c.width = b.width;
+  c.height = Math.max(window.innerHeight*.6,
+                      window.innerHeight - 200); };
+  fs(); window.onresize = fs;">
+<div>
+  <canvas id="viewerCanvas" class="viewerComponent"
+          style="background-color: #CCCCCC; border: 1px solid gray;
+                 outline:none" tabIndex="1"></canvas>
+
+  <div id="viewerProgressDiv" style="width: 400px; position: relative;
+           top: -350px; left: 200px; background-color: rgba(128, 128, 128, 0.7);
+           padding: 20px; border-radius: 25px">
+    <progress id="viewerProgress"  class="viewerComponent" value="0" max="200"
+              style="width: 400px"></progress>
+    <label id="viewerProgressLabel" class="viewerComponent"
+           style="margin-top: 2px; display: block; margin-left: 10px"></label>
+  </div>
+
+  <div style="margin-top: -60px">
+    <input id="aerialView" class="viewerComponent" name="cameraType"
+           type="radio" style="visibility: hidden;"/>
+      <label class="viewerComponent" for="aerialView"
+             style="visibility: hidden;">Aerial view</label>
+    <input id="virtualVisit" class="viewerComponent" name="cameraType"
+           type="radio" style="visibility: hidden;"/>
+      <label class="viewerComponent" for="virtualVisit"
+             style="visibility: hidden;">Virtual visit</label>
+    <select id="levelsAndCameras" class="viewerComponent"
+            style="visibility: hidden;"></select>
+  </div>
+
+  <h3>Notes:</h3>
+  <p>This is a proposed initial kitchen layout. Details are still
+    subject to change, but this is an attempt to verify that appliances
+    will fit. Also, I didn't spend a lot of effort picking perfectly
+    designed 3D models of all cabinets. Don't pay attention to
+    finishes at this point.</p>
+
+  <p>The kitchen is intended to be fully functional for everyday use,
+    but it does rely on storage outside of the kitchen for rarely used
+    items (e.g. special purpose small counter-top appliances, fresh
+    towels, bulky pantry items, ...).</p>
+
+  <p>In order to maximize fridge/freezer space, we are going to use a
+    <a href="http://www.subzero-wolf.com/sub-zero/full-size-refrigeration/builtin-refrigerators/36-inch-built-in-refrigerator"
+       >Sub-Zero 36" all-fridge</a>, and two
+    <a href="http://www.subzero-wolf.com/sub-zero/counter-refrigerator/30-inch-freezer-drawers-panel-ready"
+       >30" under-counter freezer drawers</a>. This nominally provides 23.3
+    cu.&thinsp;ft. of refrigerator space, and 9.8 cu.&thinsp;ft. of
+    freezer space.</p>
+
+  <p>We had considered using two
+    <a href="https://www.perlick.com/residential/products/freezers/view/24-signature-series-indoor-freezer-drawers"
+       >Perlick 24" under-counter freezer drawers</a> for nominally 10.4
+    cu.&thinsp;ft. of freezer space, instead. That would be a more
+    efficient use of the available space, and we overall think the
+    Perlick units are a nicer design. Unfortunately, we cannot figure
+    out how to solve our need for an ice maker -- and we don't really
+    need a dedicated 50lbs ice makers. But this question might need
+    some review.</p>
+
+  <p>The freezer drawers are directly next to the
+    range. I <em>think</em> that is permissible, but we might want to
+    double-check with local code restrictions. We also might want to
+    install an insulated filler-strip just to be conservative.</p>
+
+  <p>We will continue using the existing
+    <a href="http://www.bluestarcooking.com/cooking/ranges/30-rnb-series-range/"
+       >30" BlueStar RNB range</a>. We had hoped to upgrade to a
+    Platinum series range that was a little wider. But upon further
+    review, it turns out the main motivation would be getting an
+    additional small (i.e. fast pre-warm) oven. Achieving that goal requires at
+    least a 48" range, which seems impractical in the available
+    space. So, instead, we'll install a dedicated steam wall oven.</p>
+
+  <p>We want a plumbed steam oven, which (in the US market) pretty much narrows
+    it down to a Miele. There is talk about a larger version being
+    released in fall, but we are probably fine with the existing
+    <a href="https://www.mieleusa.com/domestic/steam-oven-1466.htm?mat=10256790&name=DGC_6800-1"
+       >24"×18" combi steam oven.</a>.<p>
+
+  <p>We also need a solution for a micro-wave, even if we expect that
+    it will be used much more rarely. For now, we picked the most
+    <a href="https://www.mieleusa.com/domestic/speed-ovens-1457.htm?mat=09862960&name=H_6200_BM"
+       >basic Miele model</a> available, in order to easily match with the steam
+    oven. The speed oven feature is a nice bonus, but is not entirely
+    critical for our needs. So, we could revisit this decision. An
+    alternative product would for instance be the <a
+    href="http://www.smegusa.com/product/su45mcx1/">SmegUSA Speedoven.</a></p>
+
+  <p>We will continue using the existing
+    <a href="https://www.mieleusa.com/domestic/range-of-dishwashers-2498.htm"
+       >24" Miele dishwasher</a>.</p>
+
+  <p>We have gotten very used to our trash compactor and will buy the
+    <a href="http://www.kitchenaid.com/shop/major-appliances-1/disposers-and-compactors-2/disposers-and-compactors-3/-[KTTS505ESS]-408529/KTTS505ESS/"
+       >current KitchenAid model</a>, as that's apparently the only
+    option on the market, anyway.</p>
+
+  <p>No decision on garbage disposal, as of yet. But that should be
+    pretty easy to nail down.</p>
+
+  <p>Similarly, no decision on the vent hood yet. We need to narrow down
+    the cabinet design a little more before we can decide on whether we
+    want a liner or a full hood. We probably want a remote blower and an
+    in-line muffler to minimize noise, though. We most likely will need a
+    <a href="http://www.fantech.net/solutions/residential-kitchens/true-makeup-air-system/"
+       >make-up-air system</a>, too.</p>
+
+  <p>We looked at a couple of water-filter options, but haven't
+    reached a conclusion at this point. And regretfully, we might not
+    be able to get the water carbonation solution that I had originally been
+    hoping for. It sounds as if the product has possibly been taken
+    off the US market.</p>
+
+  <p>An alternative option would be the
+    <a href="https://www.amazon.com/dp/B00LNJYZYO/ref=psdc_6810579011_t2_B00CKYO58M"
+       >Grohe water carbonation</a> system. I am still figuring out
+    whether the reviews are mostly positive or mostly negative. It
+    sounds as if a lot of the negative reviews are a result of poor
+    installation, which could skew results.</p>
+
+  <p>The layout currently shows 3+ feet of pantry space. That's a nice
+    upgrade over what we have right now. But in practice, we'll
+    probably have to shave some space off of the pantry. Most notably,
+    there currently are very few places for drawers -- next to the
+    refrigerator and possibly under the microwave. And these places
+    compete with storage space for pots. So, consider the big pantry a
+    place-holder and we'll finalize the exact layout later.</p>
+</div>
+
+<script type="text/javascript">
+  var homeUrl = "Design%20%232.zip";
+  var onerror = function(err) {
+      if (err == "No WebGL") {
+        alert("Sorry, your browser doesn't support WebGL.");
+      } else {
+        console.log(err.stack);
+        alert("Error: " + (err.message  ? err.constructor.name + " " +  err.message  : err));
+      }
+    };
+  var onprogression = function(part, info, percentage) {
+      var progress = document.getElementById("viewerProgress");
+      if (part === HomeRecorder.READING_HOME) {
+        // Home loading is finished
+        progress.value = percentage * 100;
+        info = info.substring(info.lastIndexOf('/') + 1);
+      } else if (part === Node3D.READING_MODEL) {
+        // Models loading is finished
+        progress.value = 100 + percentage * 100;
+        if (percentage === 1) {
+          document.getElementById("viewerProgressDiv").style.visibility
+            = "hidden";
+        }
+      }
+
+      document.getElementById("viewerProgressLabel").innerHTML =
+          (percentage ? Math.floor(percentage * 100) + "% " : "") + part + " " + info;
+    };
+
+  viewHome("viewerCanvas",
+           homeUrl,
+           onerror,
+           onprogression,
+          {roundsPerMinute: 1,
+           navigationPanel: "default",
+           aerialViewButtonId: "aerialView",
+           virtualVisitButtonId: "virtualVisit",
+           levelsAndCamerasListId: "levelsAndCameras"
+          });
+</script>
+
+</body>
+</html>
